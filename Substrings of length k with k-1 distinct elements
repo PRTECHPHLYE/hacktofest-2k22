@@ -1,0 +1,52 @@
+//Abhishek Chauhan 
+//22 
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int countOfSubstrings(string s, int k)
+{
+	int count=0;
+	int i=0,j=0;
+
+	map<char,int> m;
+
+	while(j<s.size())
+	{
+		if(j-i+1<k)
+		{
+			m[s[j]]++;
+			j++;
+		}
+		else
+			if(j-i+1==k)
+			{
+				m[s[j]]++;
+
+				if(m.size()==k-1)
+					count++;
+
+				m[s[i]]--;
+
+				if(m[s[i]]==0)
+					m.erase(m[s[i]]);
+
+				i++;
+				j++;
+			}
+
+	}
+	return count;
+}
+
+int main()
+{
+	string str;
+	cin>>str;
+
+	int k;
+	cin>>k;
+
+	cout<<countOfSubstrings(str,k);
+}
+
