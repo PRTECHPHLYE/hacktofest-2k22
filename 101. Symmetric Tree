@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool fun(TreeNode* r1,TreeNode* r2)
+    {
+        if(r1 == NULL || r2 == NULL)
+            return r1==r2;
+        
+        if(r1->val == r2->val)
+            return (fun(r1->left,r2->right) && fun(r1->right,r2->left));
+        else
+            return false;
+    }
+             
+    bool isSymmetric(TreeNode* root) 
+    {
+           return fun(root->left,root->right);
+    }
+};
